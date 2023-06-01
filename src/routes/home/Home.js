@@ -9,7 +9,9 @@ const VIEW_SIZE = 10;
 const ADD_VIEW_SIZE = 20;
 
 export default function Home () {
-    const [target, inView] = useInView();
+    const [target, inView] = useInView({
+        threshold: 0,
+    });
     const [viewSize, setViewSize] = useState(VIEW_SIZE);
     const thList = createTableHeader();
     const tdList = createTableData();
@@ -54,7 +56,7 @@ export default function Home () {
                                 </tr>
                             )
                         })}
-                        <tr ref={target}></tr>
+                        <tr ref={target} style={{ height: '20px' }}></tr>
                     </tbody>
                 </table>
             </TableBox>
