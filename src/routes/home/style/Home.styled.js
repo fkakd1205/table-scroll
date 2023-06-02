@@ -244,6 +244,14 @@ export const TableBox = styled.div`
         box-shadow: 6px 0 5px -7px #e0e0e0;
     }
 
+    table .fixed-col-right {
+        position: sticky;
+        background: white;
+        right: 0;
+        z-index:10;
+        box-shadow: 0.5px 0 0 0 #e0e0e0 inset;
+    }
+
     .status-button{
         height: 30px;
         width: 150px;
