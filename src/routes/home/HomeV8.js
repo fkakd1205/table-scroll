@@ -51,7 +51,6 @@ export default function HomeV8() {
                             </td>
                         </>
                     )}
-                    i
                     element={{
                         Footer: () => {
                             <tr><td>hi</td></tr>
