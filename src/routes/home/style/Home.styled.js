@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FixedSizeGrid, FixedSizeList } from "react-window";
 
 export const TableWrapper = styled.div`
     margin-top: 10px;
@@ -28,6 +29,47 @@ export const WindowingBox = styled.div`
     border: 1px solid #e0e0e0;
     border-radius: 5px;
     background:#fcfcfc;
+    /* min-width: 2000px;
+    max-width: 2000px; */
+
+    .grid-el {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+`;
+
+export const WindowingList = styled(FixedSizeList)`
+    position: relative;
+    
+    .windowing-wrapper {
+    }
+
+    .windowing-li {
+        width: 100%;
+    }
+
+    .fixed-col-right {
+        position: sticky;
+        background: red;
+        right: 0;
+        height: 100%;
+        z-index: 11;
+        box-shadow: 0.5px 0 0 0 #e0e0e0 inset;
+    }
+`;
+
+export const HeaderBox = styled.div`
+    display: flex;
+    overflow: hidden;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+`;
+
+export const HeaderTh = styled.div`
+    min-width: 150px;
 `;
 
 export const TableBox = styled.div`
