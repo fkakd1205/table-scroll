@@ -11,11 +11,10 @@ export const TableFieldWrapper = styled.div`
     
     .table-box{
         position:relative;
-        height: 500px;
+        height: 300px;
         overflow: auto;
         border: 1px solid #e0e0e0;
         border-radius: 15px;
-        border-top-left-radius: 0;
         background: #fff;
         box-shadow: var(--defaultBoxShadow);
 
@@ -31,7 +30,7 @@ export const TableFieldWrapper = styled.div`
         table-layout: fixed;
         border: none;
     }
-
+    
     table .col-5-3 {
         width:50px;
 
@@ -49,20 +48,25 @@ export const TableFieldWrapper = styled.div`
     }
 
     table thead tr th{
-        vertical-align: middle !important;
-        text-align: center;
-        background: #fff;
-        /* border-bottom: 1px solid #c0c0c0; */
-        color: #000;
-        font-weight: 700;
-        padding: 10px;
-        font-size: 12px;
         height: 43px;
 
-        @media all and (max-width: 992px){
-            font-size: 10px;
-            padding: 10px 5px;
-        }
+        box-sizing: border-box;
+        padding:10px 5px;
+
+        background:#f7f7f7;
+        color: #333;
+        font-weight: 600;
+        position: sticky;
+        top:0;
+        border-bottom: 1px solid #e0e0e0;
+        border-right: 1px solid #f0f0f0;
+
+        line-height: 1.5;
+        word-break: keep-all;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        font-size: 12px;
     }
 
     table tbody tr{
@@ -80,29 +84,20 @@ export const TableFieldWrapper = styled.div`
     }
 
     table tbody tr td{
-        padding: 7px 5px;
-        vertical-align: middle !important;
+        height: 35px;
+        box-sizing: border-box;
         border-bottom: 1px solid #e0e0e0;
-        text-align: center;
-        font-size: 11px;
-        color: #444;
-        font-weight: 500;
         line-height: 1.5;
         word-break: keep-all;
         overflow:hidden;
         text-overflow:ellipsis;
         white-space:nowrap;
-        height: 43px;
+        font-size: 12px;
+        color: #333;
 
         @media all and (max-width: 992px){
             font-size: 10px;
         }
-        
-        /* &:hover{
-            background: #2C73D260;
-            color: white;
-            font-weight: 600;
-        } */
     }
 
     table tbody tr .td-highlight {

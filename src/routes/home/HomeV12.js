@@ -1,22 +1,22 @@
 import React from "react";
 import ResizableTh from "../../components/table/th/v1/ResizableTh";
 import { TableFieldWrapper } from "./style/HomeV8.styled";
-import { TableVirtuoso } from "react-virtuoso";
+import CustomTableVirtuoso from "../../components/table/virtualization/virtuoso/CustomTableVirtuoso";
 
 const TH_SIZE = 40;
 const TD_SIZE = 100;
 
-export default function HomeV8() {
+export default function HomeV12() {
     const thList = createTableHeader();
     const tdList = createTableData();
 
     return (
         <TableFieldWrapper>
             <div className='table-box'>
-                <TableVirtuoso
+                <CustomTableVirtuoso
                     style={{ height: 300 }}
-                    totalCount={tdList.length || 0}
-                    data={tdList || []}
+                    totalCount={tdList.length}
+                    data={tdList}
                     fixedHeaderContent={() => (
                         <tr>
                             {thList?.map((r, index) => (
