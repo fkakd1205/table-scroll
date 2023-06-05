@@ -4,6 +4,7 @@ import { FixedSizeGrid, FixedSizeList } from "react-window";
 export const TableWrapper = styled.div`
     margin-top: 10px;
     padding: 50px;
+
     .empty-box{
         padding: 50px 0;
 
@@ -21,6 +22,15 @@ export const TableWrapper = styled.div`
                 height: 20px;
             }
         }
+    }
+
+    .table-header {
+        min-width: 150px;
+        /* overflow: auto; */
+    }
+
+    .table-row {
+        
     }
 `;
 
@@ -73,12 +83,15 @@ export const HeaderTh = styled.div`
 `;
 
 export const TableBox = styled.div`
+    width: 100%;
     overflow: auto;
     min-height: 300px;
     max-height: 300px;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
     background:#fcfcfc;
+    display: flex;
+    flex: 1 1 auto;
 
     &::-webkit-scrollbar{
         background: #e1e1e130;
