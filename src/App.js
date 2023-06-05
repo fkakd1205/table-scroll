@@ -12,6 +12,8 @@ import HomeV8 from './routes/home/HomeV8';
 import HomeV9 from './routes/home/HomeV9';
 import HomeV10 from './routes/home/HomeV10';
 import HomeV11 from './routes/home/HomeV11';
+import HomeV12 from './routes/home/HomeV12';
+import HomeV13 from './routes/home/HomeV13';
 
 function App() {
   return (
@@ -27,7 +29,9 @@ function App() {
           {/* <Route path="/" element={<HomeV8 />} /> */}
           {/* <Route path="/" element={<HomeV9 />} /> */}
           {/* <Route path="/" element={<HomeV10 />} /> */}
-          <Route path="/" element={<HomeV11 />} />
+          {/* <Route path="/" element={<HomeV11 />} /> */}
+          {/* <Route path="/" element={<HomeV12 />} /> */}
+          <Route path="/" element={<HomeV13 />} />
         </Routes>
     </div>
   );
