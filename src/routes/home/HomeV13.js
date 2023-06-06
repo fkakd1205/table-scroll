@@ -1,7 +1,7 @@
-import React, { useMemo } from "react";
+import React from "react";
 import ResizableTh from "../../components/table/th/v1/ResizableTh";
 import { TableFieldWrapper } from "./style/HomeV13.styled";
-import { TableVirtuoso, Virtuoso } from "react-virtuoso";
+import CustomTableVirtuoso from "../../components/table/virtualization/virtuoso/v2/CustomTableVirtuoso";
 
 const TH_SIZE = 40;
 const TD_SIZE = 100;
@@ -10,66 +10,79 @@ export default function HomeV13() {
     const thList = createTableHeader();
     const tdList = createTableData();
 
+    const createVirtualizedRows = (params) => {
+        const index = params["data-index"];
+
+        return (
+            <TableBodyRow
+                index={index}
+                row={tdList[index]}
+                header={thList}
+                viewIndexInfo={params}
+            />
+        )
+    }
+
     return (
         <TableFieldWrapper>
             <div className='table-box'>
-                <Virtuoso
-                    style={{ height: 300 }}
+                <CustomTableVirtuoso
+                    height={300}
                     totalCount={tdList.length}
-                    components={{
-                        List: React.forwardRef(({ children, style }, ref) => {
-                            return (
-                                <table
-                                    style={{
-                                        "--virtuosoPaddingTop": (style?.paddingTop ?? 0) + "px",
-                                        "--virtuosoPaddingBottom": (style?.paddingBottom ?? 0) + "px"
-                                    }}
-                                >
-                                    <thead style={{ position: 'sticky', top: 0, zIndex: 2 }}>
-                                        <tr>
-                                            {thList?.map((r, index) => (
-                                                <ResizableTh
-                                                    className="fixed-header"
-                                                    scope="col"
-                                                    key={r.headerName + index}
-                                                >
-                                                    {r.headerName}
-                                                </ResizableTh>
-                                            ))}
-                                            <th
-                                                className="fixed-header fixed-col-right"
-                                                scope="col"
-                                                style={{ minWidth: '45px', zIndex: 1 }}     // fixed-col : z-index 1
-                                            >
-                                                고정
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody ref={ref}>{children}</tbody>
-                                </table>
-                            )
-                        }),
-                        Item: (props) => {
-                            const row = tdList[props["data-index"]];
-
-                            return (
-                                <tr {...props}>
-                                    {thList?.map((r) => (
-                                        <td key={'tr_' + r.headerName}>{row[r.headerName]}</td>
-                                    ))}
-                                    <td
-                                        className="fixed-col-right"
-                                        style={{ minWidth: '45px', zIndex: 0 }}     // fixed-col: z-index 0
-                                    >
-                                        고정
-                                    </td>
-                                </tr>
-                            );
-                        }
-                    }}
+                    headerField={<TableHeader header={thList} />}
+                    createVirtualizedRows={createVirtualizedRows}
                 />
             </div>
         </TableFieldWrapper>
+    )
+}
+
+function TableHeader({ header }) {
+    return(
+        <tr>
+            <th
+                className="fixed-header"
+                scope="col"
+                style={{ width: '50px'}}
+            >
+                No.
+            </th>
+            {header?.map((r, index) => (
+                <ResizableTh
+                    className="fixed-header"
+                    scope="col"
+                    key={r.headerName + index}
+                >
+                    {r.headerName}
+                </ResizableTh>
+            ))}
+            <th
+                className="fixed-header fixed-col-right"
+                scope="col"
+                style={{ minWidth: '45px', zIndex: 1 }}     // fixed-col : z-index 1
+            >
+                고정
+            </th>
+        </tr>
+    )
+}
+
+function TableBodyRow({ index, row, header, viewIndexInfo }) {
+    return (
+        <tr {...viewIndexInfo}>
+            <td>
+                {index + 1}
+            </td>
+            {header?.map((r) => (
+                <td key={'tr_' + r.headerName}>{row[r.headerName]}</td>
+            ))}
+            <td
+                className="fixed-col-right"
+                style={{ minWidth: '45px', zIndex: 0 }}     // fixed-col: z-index 0
+            >
+                고정
+            </td>
+        </tr>
     )
 }
 

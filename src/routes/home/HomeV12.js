@@ -1,7 +1,7 @@
 import React from "react";
 import ResizableTh from "../../components/table/th/v1/ResizableTh";
 import { TableFieldWrapper } from "./style/HomeV8.styled";
-import CustomTableVirtuoso from "../../components/table/virtualization/virtuoso/CustomTableVirtuoso";
+import CustomTableVirtuoso from "../../components/table/virtualization/virtuoso/v1/CustomTableVirtuoso";
 
 const TH_SIZE = 40;
 const TD_SIZE = 100;
