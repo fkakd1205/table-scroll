@@ -23,26 +23,15 @@ export const TableFieldWrapper = styled.div`
         }
     }
 
-    table {
+    table{
         position:relative;
-        width: fit-content;
-        table-layout: fixed;
         text-align: center;
+        /* width: fit-content; */
+        table-layout: fixed;
         border: none;
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
 
-    tbody::before {
-        display: block;
-        padding-top: var(--virtuosoPaddingTop);
-        content: "";
-    }
-
-    tbody::after {
-        display: block;
-        padding-bottom: var(--virtuosoPaddingBottom);
-        content: "";
+        /* width: 100% 으로 설정. view header size가 작아도 항목들이 테이블 너비에 맞춰짐 */
+        width: 100%;
     }
 
     table .col-5-3 {
@@ -62,25 +51,19 @@ export const TableFieldWrapper = styled.div`
     }
 
     table thead tr th{
-        height: 43px;
-
-        box-sizing: border-box;
-        padding:10px 5px;
-
-        background:#f7f7f7;
-        color: #333;
-        font-weight: 600;
-        position: sticky;
-        top:0;
-        border-bottom: 1px solid #e0e0e0;
-        border-right: 1px solid #f0f0f0;
-
-        line-height: 1.5;
-        word-break: keep-all;
-        overflow:hidden;
-        text-overflow:ellipsis;
-        white-space:nowrap;
+        vertical-align: middle !important;
+        text-align: center;
+        background: #fff;
+        /* border-bottom: 1px solid #c0c0c0; */
+        color: #000;
+        font-weight: 700;
+        padding: 10px;
         font-size: 12px;
+
+        @media all and (max-width: 992px){
+            font-size: 10px;
+            padding: 10px 5px;
+        }
     }
 
     table tbody tr{
@@ -98,20 +81,29 @@ export const TableFieldWrapper = styled.div`
     }
 
     table tbody tr td{
-        height: 35px;
-        box-sizing: border-box;
+        padding: 7px 5px;
+        vertical-align: middle !important;
         border-bottom: 1px solid #e0e0e0;
+        text-align: center;
+        font-size: 11px;
+        color: #444;
+        font-weight: 500;
         line-height: 1.5;
         word-break: keep-all;
         overflow:hidden;
         text-overflow:ellipsis;
         white-space:nowrap;
-        font-size: 12px;
-        color: #333;
+        height: 30px;
 
         @media all and (max-width: 992px){
             font-size: 10px;
         }
+        
+        /* &:hover{
+            background: #2C73D260;
+            color: white;
+            font-weight: 600;
+        } */
     }
 
     table tbody tr .td-highlight {
@@ -139,11 +131,11 @@ export const TableFieldWrapper = styled.div`
     .table-box .fixed-header {
         position: sticky;
         top: 0;
+        z-index:10;
         box-shadow: 0 -0.5px 0 0 #e0e0e0 inset;
     }
 
     .table-box .fixed-col-left {
-        display: inline-block;
         position: sticky;
         background: white;
         left: 0;
@@ -152,7 +144,6 @@ export const TableFieldWrapper = styled.div`
     }
 
     .table-box .fixed-col-right {
-        display: inline-block;
         position: sticky;
         background: white;
         right: 0;

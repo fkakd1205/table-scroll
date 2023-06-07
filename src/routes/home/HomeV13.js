@@ -59,7 +59,7 @@ function TableHeader({ header }) {
             <th
                 className="fixed-header fixed-col-right"
                 scope="col"
-                style={{ minWidth: '45px', zIndex: 1 }}     // fixed-col : z-index 1
+                style={{ width: '45px', zIndex: 11 }}     // fixed-col : z-index 1
             >
                 고정
             </th>
@@ -78,7 +78,7 @@ function TableBodyRow({ index, row, header, viewIndexInfo }) {
             ))}
             <td
                 className="fixed-col-right"
-                style={{ minWidth: '45px', zIndex: 0 }}     // fixed-col: z-index 0
+                style={{ width: '45px', zIndex: 10 }}     // fixed-col: z-index 0
             >
                 고정
             </td>

@@ -5,13 +5,13 @@ import styled from "styled-components";
 const TableWrapper = styled.div`
     tbody::before {
         display: block;
-        padding-top: var(--virtuosoPaddingTop);
+        padding-top: var(--tablePaddingTop);
         content: "";
     }
 
     tbody::after {
         display: block;
-        padding-bottom: var(--virtuosoPaddingBottom);
+        padding-bottom: var(--tablePaddingBottom);
         content: "";
     }
 `;
@@ -34,15 +34,19 @@ export default function CustomTableVirtuoso({
                         return (
                             <table
                                 style={{
-                                    "--virtuosoPaddingTop": (style?.paddingTop ?? 0) + "px",
-                                    "--virtuosoPaddingBottom": (style?.paddingBottom ?? 0) + "px"
+                                    "--tablePaddingTop": (style?.paddingTop ?? 0) + "px",
+                                    "--tablePaddingBottom": (style?.paddingBottom ?? 0) + "px"
                                 }}
                                 cellSpacing="0"
                             >
-                                <thead style={{ position: 'sticky', top: 0, zIndex: 2 }}>
+                                <thead>
                                     {headerField}
                                 </thead>
-                                <tbody ref={ref}>{children}</tbody>
+
+                                {/* Observer를 등록할 곳에 ref 설정 */}
+                                <tbody ref={ref}>
+                                    {children}
+                                </tbody>
                             </table>
                         )
                     }),
