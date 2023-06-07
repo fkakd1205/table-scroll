@@ -18,40 +18,63 @@ const TableWrapper = styled.div`
 
 export default function CustomTableVirtuoso({
     height = 300,
+    rows = [],
+    columns = [],
     totalCount = 0,
     headerField = {},
-    createVirtualizedRows = () => {},
+    bodyField = {},
     style,
     ...props
 }) {
+    const List = React.forwardRef(({ children, style }, ref) => {
+        return (
+            <table
+                style={{
+                    "--tablePaddingTop": (style?.paddingTop ?? 0) + "px",
+                    "--tablePaddingBottom": (style?.paddingBottom ?? 0) + "px"
+                }}
+                cellSpacing="0"
+            >
+                <thead>
+                    {{...headerField,
+                        props: {
+                            ...headerField.props,
+                            header: columns
+                        }
+                    }}
+                </thead>
+
+                <tbody ref={ref}>
+                    {children}
+                </tbody>
+            </table>
+        )
+    })
+
+    const Item = (params) => {
+        if(!(params && rows.length > 0)) return;
+        
+        let index = params["data-index"];
+        let data = rows[index];
+
+        return {
+            ...bodyField,
+            props: {
+                ...bodyField.props,
+                rowIndex: index,
+                rowData: data,
+                rowConfig: params,
+                header: columns
+            }
+        };
+    }
+
     return (
         <TableWrapper>
             <Virtuoso
                 style={{ ...style, height }}
                 totalCount={totalCount}
-                components={{
-                    List: React.forwardRef(({ children, style }, ref) => {
-                        return (
-                            <table
-                                style={{
-                                    "--tablePaddingTop": (style?.paddingTop ?? 0) + "px",
-                                    "--tablePaddingBottom": (style?.paddingBottom ?? 0) + "px"
-                                }}
-                                cellSpacing="0"
-                            >
-                                <thead>
-                                    {headerField}
-                                </thead>
-
-                                {/* Observer를 등록할 곳에 ref 설정 */}
-                                <tbody ref={ref}>
-                                    {children}
-                                </tbody>
-                            </table>
-                        )
-                    }),
-                    Item: (props) => createVirtualizedRows(props)
-                }}
+                components={{ List, Item }}
                 {...props}
             />
         </TableWrapper>

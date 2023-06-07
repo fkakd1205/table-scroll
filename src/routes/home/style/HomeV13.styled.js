@@ -11,7 +11,7 @@ export const TableFieldWrapper = styled.div`
     
     .table-box{
         position:relative;
-        height: 300px;
+        height: 500px;
         overflow: auto;
         border: 1px solid #e0e0e0;
         border-radius: 15px;

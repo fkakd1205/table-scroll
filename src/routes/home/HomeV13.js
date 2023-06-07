@@ -10,27 +10,16 @@ export default function HomeV13() {
     const thList = createTableHeader();
     const tdList = createTableData();
 
-    const createVirtualizedRows = (params) => {
-        const index = params["data-index"];
-
-        return (
-            <TableBodyRow
-                index={index}
-                row={tdList[index]}
-                header={thList}
-                viewIndexInfo={params}
-            />
-        )
-    }
-
     return (
         <TableFieldWrapper>
             <div className='table-box'>
                 <CustomTableVirtuoso
-                    height={300}
+                    height={500}
+                    rows={tdList}
+                    columns={thList}
                     totalCount={tdList.length}
-                    headerField={<TableHeader header={thList} />}
-                    createVirtualizedRows={createVirtualizedRows}
+                    headerField={<TableHeader />}
+                    bodyField={<TableBodyRow />}
                 />
             </div>
         </TableFieldWrapper>
@@ -67,14 +56,19 @@ function TableHeader({ header }) {
     )
 }
 
-function TableBodyRow({ index, row, header, viewIndexInfo }) {
+function TableBodyRow({
+    rowIndex,
+    rowData,
+    rowConfig,
+    header
+}) {
     return (
-        <tr {...viewIndexInfo}>
+        <tr {...rowConfig}>
             <td>
-                {index + 1}
+                {rowIndex + 1}
             </td>
             {header?.map((r) => (
-                <td key={'tr_' + r.headerName}>{row[r.headerName]}</td>
+                <td key={'tr_' + r.headerName}>{rowData[r.headerName]}</td>
             ))}
             <td
                 className="fixed-col-right"
